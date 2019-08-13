@@ -1,0 +1,14 @@
+
+8월 13, 2019 10:04:54.28 NEW SESSION
+8월 13, 2019 10:04:54.28 [12852:12996:0813/100454.276:ERROR:browser_process_sub_thread.cc(203)] Waited 17 ms for network service
+8월 13, 2019 10:04:54.30 
+8월 13, 2019 10:04:54.30 KLIB_SelfTest return : KLR_OK
+8월 13, 2019 10:05:06.62 [5368:9176:0813/100506.628:ERROR:browser_process_sub_thread.cc(203)] Waited 15 ms for network service
+8월 13, 2019 10:05:06.65 
+8월 13, 2019 10:05:06.65 KLIB_SelfTest return : KLR_OK
+8월 13, 2019 10:05:34.84 [9552:10456:0813/100534.846:ERROR:browser_process_sub_thread.cc(203)] Waited 15 ms for network service
+8월 13, 2019 10:05:34.87 
+8월 13, 2019 10:05:34.88 KLIB_SelfTest return : KLR_OK
+8월 13, 2019 10:06:10.64 [6436:10364:0813/100610.640:ERROR:browser_process_sub_thread.cc(203)] Waited 18 ms for network service
+8월 13, 2019 10:06:10.66 
+8월 13, 2019 10:06:10.66 KLIB_SelfTest return : KLR_OK
