@@ -2,3 +2,29 @@
 1566354583477	Rename resource 'fileupload01.jsp'
 1566356973178	Delete element
 1566357917132	Rename resource 'fileupload03.jsp'
+1566437675831	Copy file
+1566439739645	Copy file
+1566440049463	Copy file
+1566451100857	Move 'bootstrap.min.css' to 'css'
+1566451103114	Delete element
+1566451240214	Rename resource 'addProduct.jsp'
+1566451300064	Move 2 resources to 'exaddmember'
+1566451999537	Delete element
+1566452042093	Rename resource 'products.jsp'
+1566452056992	Rename resource 'processAddProduct.jsp'
+1566454694633	Delete element
+1566454818676	Rename resource 'processAddProduct.jsp'
+1566458950806	Delete element
+1566459398393	Delete element
+1566459400914	Move 'validation.js' to 'js'
+1566527331453	Copy file
+1566527406223	Rename resource '초09'
+1566530500746	Copy files
+1566530504400	Delete element
+1566539280317	Copy file
+1566539307123	Copy file
+1566539758871	Rename resource 'myBundle_zh-CN.properties'
+1566539814348	Rename resource 'myBundle_zh_CN.properties'
+1566546542878	Rename resource 'web.xml'
+1566546719395	Rename resource 'web01.xml'
+1566547652270	Rename resource 'web2.xml'

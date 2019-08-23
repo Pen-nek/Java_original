@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<security-role>
+		<role-name>manager</role-name>
+	</security-role>
+	<security-constraint>
+		<web-resource-collection>
+			<
+		</web-resource-collection>
+		<auth-constraint>
+		
+		</auth-constraint>
+	</security-constraint>
+</web-app>

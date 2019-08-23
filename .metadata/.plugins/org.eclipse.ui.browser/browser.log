@@ -64,3 +64,116 @@
 8월 21, 2019 17:09:21.52 [13016:1424:0821/170921.524:ERROR:browser_process_sub_thread.cc(203)] Waited 37 ms for network service
 8월 21, 2019 17:09:21.55 
 8월 21, 2019 17:09:21.55 KLIB_SelfTest return : KLR_OK
+
+8월 22, 2019 14:29:31.12 NEW SESSION
+8월 22, 2019 14:29:31.12 [5336:6052:0822/142931.098:ERROR:browser_process_sub_thread.cc(203)] Waited 5 ms for network service
+8월 22, 2019 14:29:31.12 
+8월 22, 2019 14:29:31.13 KLIB_SelfTest return : KLR_OK
+8월 22, 2019 14:41:21.64 [1576:2496:0822/144121.644:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+8월 22, 2019 14:41:21.68 
+8월 22, 2019 14:41:21.68 KLIB_SelfTest return : KLR_OK
+8월 22, 2019 14:41:34.70 [12644:4420:0822/144134.706:ERROR:browser_process_sub_thread.cc(203)] Waited 25 ms for network service
+8월 22, 2019 14:41:34.73 
+8월 22, 2019 14:41:34.73 KLIB_SelfTest return : KLR_OK
+8월 22, 2019 14:43:07.64 [7944:12788:0822/144307.640:ERROR:browser_process_sub_thread.cc(203)] Waited 11 ms for network service
+8월 22, 2019 14:43:07.67 
+8월 22, 2019 14:43:07.67 KLIB_SelfTest return : KLR_OK
+
+8월 23, 2019 12:34:29.24 NEW SESSION
+8월 23, 2019 12:34:29.24 [Parent 6436, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+8월 23, 2019 12:34:29.25 [Parent 6436, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+8월 23, 2019 12:34:29.25 [Parent 6436, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+8월 23, 2019 12:34:29.25 [Child 4572, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+8월 23, 2019 12:34:29.26 [Child 4572, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromi[Child 10236, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+8월 23, 2019 12:34:29.26 [Child 10236, Chrome_ChildThread] WARNING: pipe error: [Child 8284, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+8월 23, 2019 12:34:29.26 [Child 8284, Chrome_ChildThread] WARNING: pipe error: 109: file z:[Parent 6436, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+8월 23, 2019 12:34:29.27 [Child 4708, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1563383129/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+8월 23, 2019 12:34:29.34 [Child 4708, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_15
+8월 23, 2019 12:34:29.34 ###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+8월 23, 2019 12:34:29.35 
+8월 23, 2019 12:34:29.36 [GPU 1592, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_156338312
+8월 23, 2019 12:34:29.36 ###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+8월 23, 2019 12:34:29.37 
+8월 23, 2019 12:34:29.39 
+8월 23, 2019 12:34:29.39 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:09:32.15 [3404:8164:0823/140932.157:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+8월 23, 2019 14:09:32.22 
+8월 23, 2019 14:09:32.22 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:18:31.45 [10616:3660:0823/141831.459:ERROR:browser_process_sub_thread.cc(203)] Waited 19 ms for network service
+8월 23, 2019 14:18:31.48 
+8월 23, 2019 14:18:31.49 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:18:50.16 [9388:8052:0823/141850.169:ERROR:browser_process_sub_thread.cc(203)] Waited 17 ms for network service
+8월 23, 2019 14:18:50.19 
+8월 23, 2019 14:18:50.20 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:19:05.02 [10520:11764:0823/141905.022:ERROR:browser_process_sub_thread.cc(203)] Waited 9 ms for network service
+8월 23, 2019 14:19:05.05 
+8월 23, 2019 14:19:05.05 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:19:09.06 [8232:10184:0823/141909.060:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+8월 23, 2019 14:19:09.08 
+8월 23, 2019 14:19:09.08 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:19:38.94 [9208:5744:0823/141938.946:ERROR:browser_process_sub_thread.cc(203)] Waited 12 ms for network service
+8월 23, 2019 14:19:38.97 
+8월 23, 2019 14:19:38.98 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:22:46.28 [11616:4668:0823/142246.281:ERROR:browser_process_sub_thread.cc(203)] Waited 12 ms for network service
+8월 23, 2019 14:22:46.30 
+8월 23, 2019 14:22:46.30 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:23:01.82 [8576:11464:0823/142301.823:ERROR:browser_process_sub_thread.cc(203)] Waited 25 ms for network service
+8월 23, 2019 14:23:01.84 
+8월 23, 2019 14:23:01.85 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:23:30.57 [9432:12036:0823/142330.573:ERROR:browser_process_sub_thread.cc(203)] Waited 13 ms for network service
+8월 23, 2019 14:23:30.59 
+8월 23, 2019 14:23:30.60 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:25:36.66 [7456:9656:0823/142536.663:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+8월 23, 2019 14:25:36.69 
+8월 23, 2019 14:25:36.69 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:26:15.39 [5680:11980:0823/142615.395:ERROR:browser_process_sub_thread.cc(203)] Waited 15 ms for network service
+8월 23, 2019 14:26:15.42 
+8월 23, 2019 14:26:15.42 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:26:49.08 [5536:6444:0823/142649.087:ERROR:browser_process_sub_thread.cc(203)] Waited 15 ms for network service
+8월 23, 2019 14:26:49.11 
+8월 23, 2019 14:26:49.11 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:26:52.97 [816:11576:0823/142652.972:ERROR:browser_process_sub_thread.cc(203)] Waited 12 ms for network service
+8월 23, 2019 14:26:53.00 
+8월 23, 2019 14:26:53.00 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:57:04.11 [408:5756:0823/145704.112:ERROR:browser_process_sub_thread.cc(203)] Waited 16 ms for network service
+8월 23, 2019 14:57:04.15 
+8월 23, 2019 14:57:04.15 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 14:57:36.02 [8092:12256:0823/145736.026:ERROR:browser_process_sub_thread.cc(203)] Waited 12 ms for network service
+8월 23, 2019 14:57:36.06 
+8월 23, 2019 14:57:36.06 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 15:04:49.09 [11020:2084:0823/150449.093:ERROR:browser_process_sub_thread.cc(203)] Waited 16 ms for network service
+8월 23, 2019 15:04:49.12 
+8월 23, 2019 15:04:49.12 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 16:44:46.88 [3388:10536:0823/164446.880:ERROR:browser_process_sub_thread.cc(203)] Waited 12 ms for network service
+8월 23, 2019 16:44:46.91 
+8월 23, 2019 16:44:46.91 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 16:47:14.26 [4772:880:0823/164714.260:ERROR:browser_process_sub_thread.cc(203)] Waited 3 ms for network service
+8월 23, 2019 16:47:14.28 
+8월 23, 2019 16:47:14.28 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 16:48:47.90 [2784:12700:0823/164847.907:ERROR:browser_process_sub_thread.cc(203)] Waited 8 ms for network service
+8월 23, 2019 16:48:47.94 
+8월 23, 2019 16:48:47.95 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 16:49:11.40 [4648:13228:0823/164911.407:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+8월 23, 2019 16:49:11.43 
+8월 23, 2019 16:49:11.43 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 16:49:59.92 [13012:7908:0823/164959.928:ERROR:browser_process_sub_thread.cc(203)] Waited 10 ms for network service
+8월 23, 2019 16:49:59.96 
+8월 23, 2019 16:49:59.96 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 16:52:17.90 [7956:13304:0823/165217.902:ERROR:browser_process_sub_thread.cc(203)] Waited 15 ms for network service
+8월 23, 2019 16:52:17.93 
+8월 23, 2019 16:52:17.93 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 16:52:28.84 [12200:7828:0823/165228.848:ERROR:browser_process_sub_thread.cc(203)] Waited 11 ms for network service
+8월 23, 2019 16:52:28.87 
+8월 23, 2019 16:52:28.87 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 16:52:38.60 [152:1612:0823/165238.599:ERROR:browser_process_sub_thread.cc(203)] Waited 15 ms for network service
+8월 23, 2019 16:52:38.62 
+8월 23, 2019 16:52:38.62 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 17:08:54.43 [13028:12808:0823/170854.439:ERROR:browser_process_sub_thread.cc(203)] Waited 14 ms for network service
+8월 23, 2019 17:08:54.46 
+8월 23, 2019 17:08:54.46 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 17:09:07.07 [10608:5624:0823/170907.074:ERROR:browser_process_sub_thread.cc(203)] Waited 16 ms for network service
+8월 23, 2019 17:09:07.10 
+8월 23, 2019 17:09:07.11 KLIB_SelfTest return : KLR_OK
+8월 23, 2019 17:17:51.71 [11684:11944:0823/171751.713:ERROR:browser_process_sub_thread.cc(203)] Waited 5 ms for network service
+8월 23, 2019 17:17:51.73 
+8월 23, 2019 17:17:51.74 KLIB_SelfTest return : KLR_OK

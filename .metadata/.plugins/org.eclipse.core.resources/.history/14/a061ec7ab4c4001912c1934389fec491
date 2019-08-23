@@ -1,0 +1,29 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page import="java.util.*"%>
+<title></title>
+
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	String userId = request.getParameter("userId");
+	String userPw = request.getParameter("userPw");
+	String name = request.getParameter("name");
+	String phone = request.getParameter("phone");
+	String email = request.getParameter("email");
+	String gender = request.getParameter("gender");
+	String birthDate = request.getParameter("birthDate");
+	String addr = request.getParameter("addr");
+	String addr2 = request.getParameter("addr2");
+	String addr3 = request.getParameter("addr3");
+	String registDate = request.getParameter("registDate");
+
+	out.print("userId : " + userId + "<br>");
+	out.print("userPw : " + userPw + "<br>");
+	out.print("name : " + name + "<br>");
+	out.print("phone : " + phone + "<br>");
+	out.print("email : " + email + "<br>");
+	out.print("gender : " + gender + "<br>");
+	out.print("birthDate : " + birthDate + "<br>");
+	out.print("addr : " + addr + addr2 + addr3 + "<br>");
+	out.print("registDate : " + registDate + "<br>");
+%>
