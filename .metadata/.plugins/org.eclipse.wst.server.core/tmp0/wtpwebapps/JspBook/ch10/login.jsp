@@ -2,10 +2,12 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Security</title>
 </head>
+
 <body>
 	<form name="loginForm" action="j_security_check" method="post">
 		<p> 사용자명: <input type="text" name="j_username">
@@ -13,4 +15,5 @@
 		<p> <input type="submit" value="로그인">
 	</form>
 </body>
+
 </html>

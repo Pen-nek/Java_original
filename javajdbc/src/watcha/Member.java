@@ -47,6 +47,8 @@ public class Member extends JFrame {
 	private JTextField txtAge;
 	private JTable table;
 	private JTextField textField_4;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -67,6 +69,7 @@ public class Member extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Member() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 873, 573);
@@ -122,7 +125,7 @@ public class Member extends JFrame {
 		lblStars.setBounds(52, 216, 57, 15);
 		contentPane.add(lblStars);
 		
-		JComboBox cbbStars = new JComboBox();
+		JComboBox<?> cbbStars = new JComboBox();
 		cbbStars.setModel(new DefaultComboBoxModel(new String[]
 				{"Make a Selection", "★", "★★", "★★★", "★★★★", "★★★★★",}));
 		cbbStars.setBounds(140, 213, 116, 21);
@@ -140,6 +143,9 @@ public class Member extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(371, 121, 460, 351);
 		contentPane.add(scrollPane);
+		
+		
+
 		
 		
 		
@@ -195,8 +201,12 @@ public class Member extends JFrame {
 	      		String title = txtTitle.getText();
 	      		String runtime = txtPltime.getText();
 	      		String genre = txtGenre.getText();	
-	      		int age = txtAge.getText();
+	      		String age = txtAge.getText();
 	      		String stars = (String)cbbStars.getSelectedItem();
+	      		
+	      		
+	      		System.out.println(stars);
+	      		
 	      		String review = txtAreaCon.getText();
 	      		
 	      		if (chkDuplicate(title)) {
@@ -207,12 +217,12 @@ public class Member extends JFrame {
 		            try {
 		            	pstmt = conn.prepareStatement(sql);
 		            	pstmt.setString(1, title);
-		            	pstmt.setString(2, runtime);
+		            	pstmt.setInt(2, Integer.parseInt(runtime));
 						pstmt.setString(3, genre);
-						pstmt.setInt(3, age);
-						pstmt.setString(4, stars);
-						pstmt.setString(5, review);
-						pstmt.setString(7, loginID);
+						pstmt.setInt(4, Integer.parseInt(age));
+						pstmt.setString(5, stars);
+						pstmt.setString(6, review);
+						pstmt.setInt(7, 1);
 						
 			            int rst = pstmt.executeUpdate();
 			            if(rst==1)JOptionPane.showMessageDialog(null, "영화 '" + title + "'의 리뷰가 추가되었습니다.");
@@ -261,7 +271,7 @@ public class Member extends JFrame {
 						String userid = result.getString("userid");
 						int reviewid = result.getInt("reviewid");
 						
-						txtTitle.setText(title);
+						txtTitle.setText(title);	// 텍스트창에 불러온 데이터를 표시함
 						txtPltime.setText(runtime);
 						txtGenre.setText(genre);
 						txtAge.setText(age);
@@ -272,12 +282,12 @@ public class Member extends JFrame {
 				            try {
 				            	pstmt = conn.prepareStatement(sql);
 				            	pstmt.setString(1, title);
-								pstmt.setString(2, runtime);
+				            	pstmt.setInt(2, Integer.parseInt(runtime));
 								pstmt.setString(3, genre);
-								pstmt.setString(4, age);
+								pstmt.setInt(4, Integer.parseInt(age));
 								pstmt.setString(5, stars);
 								pstmt.setString(6, review);
-								pstmt.setString(7, loginID);
+								pstmt.setString(7, loginID);	// 현재 loginid로 username 검색, userid를 가져와서 여기에 저장
 								pstmt.setInt(8, reviewid);
 					            int rst = pstmt.executeUpdate();	// 쿼리를 업데이트함
 					            if(rst==1)JOptionPane.showMessageDialog(null, "영화 '" + title + "의 리뷰가 수정되었습니다.");

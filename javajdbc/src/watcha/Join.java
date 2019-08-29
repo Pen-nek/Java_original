@@ -93,21 +93,21 @@ public class Join extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dbconnect();
 	      		
-	      		String uid = txtUserID.getText();	// 해당 텍스트창에 적힌 글이 uid에 저장됨
+	      		String uname = txtUserID.getText();	// 해당 텍스트창에 적힌 글이 uname에 저장됨
 	      		String upw = txtUserPWD.getText();
 	      		
-	      		if (chkDuplicate(uid)) {
+	      		if (chkDuplicate(uname)) {
 	      			JOptionPane.showMessageDialog(null, "이미 존재하는 ID입니다.");
 	      		}else {
-		            sql = "INSERT INTO memberlist VALUES (?, ?)";
+		            sql = "INSERT INTO memberlist VALUES (auto_increment.NEXTVAL, ?, ?)";
 		            
 		            try {
 		            	pstmt = conn.prepareStatement(sql);
-		            	pstmt.setString(1, uid);
-						pstmt.setString(2, upw);
+		            	pstmt.setString(1, upw);
+						pstmt.setString(2, uname);
 						
 			            int rst = pstmt.executeUpdate();
-			            if(rst==1)JOptionPane.showMessageDialog(null, "유저 " + uid + " 가 추가되었습니다.");
+			            if(rst==1)JOptionPane.showMessageDialog(null, "유저 " + uname + " 가 추가되었습니다.");
 			            
 					} catch (SQLException e1) {
 						e1.printStackTrace();
@@ -147,14 +147,14 @@ public class Join extends JFrame {
 	
 	
 	
-    boolean chkDuplicate(String newid) {
+    boolean chkDuplicate(String newName) {
     	boolean exist = false;
     	dbconnect();
     	  
-    	sql = "SELECT * FROM memberlist WHERE userid=?";
+    	sql = "SELECT * FROM memberlist WHERE username=?";
     	try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, newid);
+			pstmt.setString(1, newName);
 	        result = pstmt.executeQuery();	// 쿼리의 실행 결과가 result에 저장됨
 	        if(result.next())	// 만약 뭔가를 가리킨다면(결과로 뭔가가 하나라도 나온다면)
 	        	exist = true;

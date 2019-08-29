@@ -6,16 +6,31 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+
 import java.awt.SystemColor;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Guest extends JFrame {
+
+	Connection conn;
+	PreparedStatement pstmt;
+	String sql;
+	ResultSet result;
 
 	private JPanel contentPane;
 	private JTable table;
@@ -74,6 +89,40 @@ public class Guest extends JFrame {
 		});
 		button.setBounds(401, 461, 86, 23);
 		contentPane.add(button);
+		
+		dataLoad();
 	}
-
-}
+	
+	
+	
+   void dbconnect() {
+         try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "madang", "madang");
+         } catch (ClassNotFoundException e) {
+            System.out.println("드라이버 로드 실패");
+            e.printStackTrace();
+         } catch (SQLException e) {
+            System.out.println("DB연결 문제");
+            e.printStackTrace();
+         }      
+   }// end of dbconnect()
+	
+	
+	
+    void dataLoad() {
+    	// JTable에 테이블 데이터를 로드
+		dbconnect();
+		sql = "SELECT reviewid, title, runtime, genre, age, stars, review, username FROM movie, memberlist WHERE movie.userid = memberlist.userid";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			result = pstmt.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(result));	// 질의 결과를 table에 넘겨줌
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+    }// end of dataLoad()
+    
+    
+    
+}//end of guest class
