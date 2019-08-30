@@ -26,26 +26,36 @@
 			<h1 class="display-3">상품 정보</h1>
 		</div>
 	</div>
+	
+	<%@ include file="dbconn.jsp" %>
 	<%
-		String id = request.getParameter("id");
-		ProductRepository dao = ProductRepository.getInstance();
-		Product product = dao.getProductById(id);
+		String p_id = request.getParameter("id"); 	
+	
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from product WHERE p_id=?";	// db에서 속성 이름이 뭔지 잘 확인할 것
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, p_id);							// 찾아올 때 쓰는 값을 넘겨줄 것
+		rs = pstmt.executeQuery();
+		
+		if (rs.next()) {
 	%>
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5">
-				<img src="./resources/images/<%=product.getFilename()%>" style="width: 100%" />
+				<img src="./resources/images/<%=rs.getString("p_fileName")%>" style="width: 100%" />
 			</div>
 			<div class="col-md-6">
-				<h3><%=product.getPname()%></h3>
-				<p><%=product.getDescription()%>
-				<p><b>상품 코드 : </b><span class="badge badge-danger"> <%=product.getProductId()%></span>
-				<p><b>제조사</b> : <%=product.getManufacturer()%>
-				<p><b>분류</b> : <%=product.getCategory()%>
-				<p><b>재고 수</b> : <%=product.getUnitsInStock()%>
+				<h3><%=rs.getString("p_name")%></h3>
+				<p><%=rs.getString("p_description")%>
+				<p><b>상품 코드 : </b><span class="badge badge-danger"> <%=rs.getString("p_id")%></span>
+				<p><b>제조사</b> : <%=rs.getString("p_manufacturer")%>
+				<p><b>분류</b> : <%=rs.getString("p_category")%>
+				<p><b>재고 수</b> : <%=rs.getLong("p_unitsInStock")%>
 				
-				<h4><%=product.getUnitPrice()%>원</h4>
-				<p><form name="addForm" action="./addCart.jsp?id=<%=product.getProductId()%>" method="post">
+				<h4><%=rs.getInt("p_unitPrice")%>원</h4>
+				<p><form name="addForm" action="./addCart.jsp?id=<%=rs.getString("p_id")%>" method="post">
 					<a href="#" class="btn btn-info" onclick="addToCart()"> 상품 주문 &raquo;</a>
 					<a href="./cart.jsp" class="btn btn-warning"> 장바구니 &raquo;</a>
 					<a href="./products.jsp" class="btn btn-secondary"> 상품 목록 &raquo;</a>
@@ -54,6 +64,15 @@
 		</div>
 		<hr>
 	</div>
+	<%
+		}
+		if (rs != null)
+			rs.close();
+		if (pstmt != null)
+			pstmt.close();
+		if (conn != null)
+			conn.close();
+	%>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

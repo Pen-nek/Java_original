@@ -10,7 +10,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
 import java.awt.CardLayout;
-import net.miginfocom.swing.MigLayout;
+//import net.miginfocom.swing.MigLayout;
 import javax.swing.border.LineBorder;
 import javax.swing.UIManager;
 import java.awt.SystemColor;
