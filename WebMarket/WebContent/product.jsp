@@ -1,6 +1,4 @@
 ﻿<%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="dto.Product"%>
-<%@ page import="dao.ProductRepository"%>
 <%@ page errorPage="exceptionNoProductId.jsp" %>
 
 <html>
@@ -50,7 +48,7 @@
 				<h3><%=rs.getString("p_name")%></h3>
 				<p><%=rs.getString("p_description")%>
 				<p><b>상품 코드 : </b><span class="badge badge-danger"> <%=rs.getString("p_id")%></span>
-				<p><b>제조사</b> : <%=rs.getString("p_manufacturer")%>
+				<p><b>출판사</b> : <%=rs.getString("p_publisher")%>
 				<p><b>분류</b> : <%=rs.getString("p_category")%>
 				<p><b>재고 수</b> : <%=rs.getLong("p_unitsInStock")%>
 				

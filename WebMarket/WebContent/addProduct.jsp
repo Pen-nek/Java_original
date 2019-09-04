@@ -62,9 +62,9 @@
 			</div>
 			
 			<div class="form-group row">
-				<label class="col-sm-2"><fmt:message key="manufacturer"/></label>
+				<label class="col-sm-2"><fmt:message key="publisher"/></label>
 				<div class="col-sm-3">
-					<input type="text" name="manufacturer" class="form-control">
+					<input type="text" name="publisher" class="form-control">
 				</div>
 			</div>
 			
@@ -87,7 +87,6 @@
 				<div class="col-sm-5">
 					<input type="radio" name="condition" value="New" > <fmt:message key="condition_New"/>
 					<input type="radio" name="condition" value="Old" > <fmt:message key="condition_Old"/>
-					<input type="radio" name="condition" value="Refurbished" > <fmt:message key="condition_Refurbished"/>
 				</div>
 			</div>
 			

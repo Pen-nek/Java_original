@@ -10,7 +10,7 @@ public class Product implements Serializable {
 	private String pname;
 	private Integer unitPrice;
 	private String description;
-	private String manufacturer;
+	private String publisher;
 	private String category;
 	private long unitsInStock;
 	private String condition;
@@ -59,12 +59,12 @@ public class Product implements Serializable {
 		this.description = description;
 	}
 
-	public String getManufacturer() {
-		return manufacturer;
+	public String getPublisher() {
+		return publisher;
 	}
 
-	public void setManufacturer(String manufacturer) {
-		this.manufacturer = manufacturer;
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 
 	public String getCategory() {

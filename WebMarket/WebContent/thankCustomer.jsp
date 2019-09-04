@@ -44,7 +44,7 @@
 		<p> 주문번호 : <% out.println(shipping_cartId); %>
 	</div>
 	<div class="container">
-		<p> <a href="./product.jsp" class="btn btn-secondary"> &laquo; 상품 목록</a>
+		<p> <a href="./products.jsp" class="btn btn-secondary"> &laquo; 상품 목록</a>
 	</div>
 </body>
 

@@ -17,7 +17,7 @@
 	String name = multi.getParameter("name");
 	String unitPrice = multi.getParameter("unitPrice");
 	String description = multi.getParameter("description");
-	String manufacturer = multi.getParameter("manufacturer");
+	String publisher = multi.getParameter("publisher");
 	String category = multi.getParameter("category");
 	String unitsInStock = multi.getParameter("unitsInStock");
 	String condition = multi.getParameter("condition");
@@ -49,12 +49,12 @@
 	
 	if (rs.next()) {
 		if (fileName != null) {
-			sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, p_manufacturer=?, p_category=?, p_unitsInStock=?, p_condition=?, p_filename=? WHERE p_id=?";
+			sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, p_publisher=?, p_category=?, p_unitsInStock=?, p_condition=?, p_filename=? WHERE p_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, name);
 			pstmt.setInt(2, price);
 			pstmt.setString(3, description);
-			pstmt.setString(4, manufacturer);
+			pstmt.setString(4, publisher);
 			pstmt.setString(5, category);
 			pstmt.setLong(6, stock);	// Long 써도 되나?
 			pstmt.setString(7, condition);
@@ -62,12 +62,12 @@
 			pstmt.setString(9, productId);
 			pstmt.executeUpdate();
 		} else {
-			sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, p_manufacturer=?, p_category=?, p_unitsInStock=?, p_condition=? WHERE p_id=?";
+			sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, p_publisher=?, p_category=?, p_unitsInStock=?, p_condition=? WHERE p_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, name);
 			pstmt.setInt(2, price);
 			pstmt.setString(3, description);
-			pstmt.setString(4, manufacturer);
+			pstmt.setString(4, publisher);
 			pstmt.setString(5, category);
 			pstmt.setLong(6, stock);	// Long 써도 되나?
 			pstmt.setString(7, condition);

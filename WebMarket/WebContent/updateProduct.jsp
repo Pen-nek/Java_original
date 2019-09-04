@@ -66,7 +66,7 @@
 					<div class="form-group row">
 						<label class="col-sm-2">제조사</label>
 						<div class="col-sm-3">
-							<input type="text" name="manufacturer" class="form-control" value='<%=rs.getString("p_manufacturer")%>'>	<!-- id값 없는 게 맞나? -->
+							<input type="text" name="publisher" class="form-control" value='<%=rs.getString("p_publisher")%>'>	<!-- id값 없는 게 맞나? -->
 						</div>
 					</div>
 					<div class="form-group row">
@@ -84,9 +84,8 @@
 					<div class="form-group row">
 						<label class="col-sm-2">상태</label>
 						<div class="col-sm-5">
-							<input type="radio" name="condition" value="New">신규 제품
-							<input type="radio" name="condition" value="Old">중고 제품
-							<input type="radio" name="condition" value="Refurbished">재생 제품
+							<input type="radio" name="condition" value="New">신규
+							<input type="radio" name="condition" value="Old">중고
 						</div>
 					</div>
 					<div class="form-group row">
