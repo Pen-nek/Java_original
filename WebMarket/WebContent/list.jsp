@@ -17,14 +17,14 @@
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <title>Board</title>
 <script type="text/javascript">
-	function checkForm() {	
-		if (${sessionId == null}) {
-			alert("로그인 해주세요.");
-			return false;
-		}
-	
-		location.href = "./BoardWriteForm.do?id=<%=sessionId%>"
+function checkForm() {	
+	if (${sessionId == null}) {
+		alert("로그인 해주세요.");
+		return false;
 	}
+
+	location.href = "./BoardWriteForm.do?id=<%=sessionId%>"
+}
 </script>
 </head>
 <body>
@@ -85,16 +85,16 @@
 			</div>
 			<div width="100%" align="left">
 				<table width="100%">
-					<tr >
-						<td  align="left">&nbsp;&nbsp; 
+					<tr>
+						<td align="left">&nbsp;&nbsp; 
 						<select name="items" class="txt">
-								<option value="subject">제목에서</option>
-								<option value="content">본문에서</option>
-								<option value="name">글쓴이에서</option>
+							<option value="subject">제목에서</option>
+							<option value="content">본문에서</option>
+							<option value="name">글쓴이에서</option>
 						</select> <input name="text" type="text" /> <input type="submit" id="btnAdd" class="btn btn-primary " value="검색 " />
 						</td>
 
-						<td  align="right">
+						<td align="right">
 							<a onclick="checkForm(); return false;" class="btn btn-primary">&laquo;글쓰기</a>
 						</td>
 					</tr>
