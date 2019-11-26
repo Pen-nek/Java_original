@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.light.mapper.CalMapper">
+
+	<!-- 일정 추가 -->
+	<insert id="insert"> 
+		insert into calendar (c_content, c_start, c_finish, c_category, c_writer, c_dept) 
+		values (#{c_content}, #{c_start}, #{c_finish}, #{c_category}, 4, 5)
+	</insert> 
+	
+	<!-- 일정 조회 -->
+	<select id="getCalList" resultType="com.light.domain.CalendarVO"> 
+		SELECT * FROM lightranet.calendar;
+	</select> 
+	
+	<!-- 일정 넣은 것 조회 -->
+	<select id="select" resultType="com.light.domain.CalendarVO">
+	 <![CDATA[
+	 	select 
+	 	  c_id, c_content
+	 	, CONCAT(DATE_FORMAT(c_start,'%Y-%m-%d'),'T',DATE_FORMAT(c_start,'%H:%m')) as c_start
+	 	, CONCAT(DATE_FORMAT(c_finish,'%Y-%m-%d'),'T',DATE_FORMAT(c_finish,'%H:%m')) as c_finish
+	 	, c_writer, c_dept, c_category 
+	 	from calendar  
+	 	where c_id = #{c_id}
+	 ]]>
+	</select>
+	<!-- 일정 수정 -->
+ 	<update id="update">
+		update calendar
+		set 
+		  c_content = #{c_content}
+		, c_start = #{c_start}
+		, c_finish = #{c_finish}
+		, c_category = #{c_category}
+		where c_id = #{c_id}
+	</update>
+
+	
+	
+	<!-- 일정 삭제 -->
+	<delete id="calDelete">
+		delete from calendar where c_id = #{c_id}
+	</delete>
+ 
+
+</mapper>

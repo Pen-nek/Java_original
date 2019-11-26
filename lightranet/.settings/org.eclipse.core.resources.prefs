@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/error/default.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/error/noResource.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/error/serverError.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/goingDraft.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/registDraft.jsp=UTF-8

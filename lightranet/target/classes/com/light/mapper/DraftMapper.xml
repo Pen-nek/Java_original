@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.light.mapper.DraftMapper">
+
+
+	<!-- 진행문서함 목록 불러오기 -->
+	<select id="getList" resultType="com.light.domain.DraftVO">
+		<![CDATA[
+			select d_id, d_title, CONCAT(DATE_FORMAT(d_writedate,'%Y-%m-%d'),' ',DATE_FORMAT(d_writedate,'%H:%m:%s')) as d_writedate, d_process, d_writer, e_name 'writer_name', d_midApprover, d_finalapprover
+			from draft d, employee e
+			where (d_writer = e_id and e_id = #{userId} and d_process = '1차진행중') 
+				OR (d_writer = e_id and e_id = #{userId} and d_process = '2차진행중')
+				OR (d_writer = e_id and e_id = #{userId} and d_process = '회수')
+				OR (d_writer = e_id and e_id = #{userId} and d_process = '반려')
+				OR (d_writer = e_id and d_midApprover = #{userId} and d_process = '1차진행중')
+			    OR (d_writer = e_id and d_finalapprover = #{userId} and d_process = '2차진행중')
+		]]>
+	</select>
+
+	<!-- 임시보관함 목록 불러오기 -->
+	<select id="getReadyList" resultType="com.light.domain.DraftVO">
+		<![CDATA[
+			select d_id, d_title, d_writedate, d_process, d_writer, d_midApprover, d_finalapprover, e_name 'writer_name'
+			from draft d, employee e
+			where d_writer = e_id and e_id = #{userId} and d_process = '작성중'
+		]]>
+	</select>
+
+	<!-- 결재완료 문서함 목록 불러오기 -->
+	<select id="getFinishedList" resultType="com.light.domain.DraftVO">
+		<![CDATA[
+			select d_id, d_title, CONCAT(DATE_FORMAT(d_writedate,'%Y-%m-%d'),' ',DATE_FORMAT(d_writedate,'%H:%m:%s')) as d_writedate, CONCAT(DATE_FORMAT(d_approvedate,'%Y-%m-%d'),' ',DATE_FORMAT(d_approvedate,'%H:%m')) as d_approvedate, d_process, d_writer, d_midApprover, d_finalapprover, e_name 'writer_name'
+			from draft d, employee e
+			where (d_writer = e_id and e_id = #{userId} and d_process = '완료') 
+				OR (d_writer = e_id and d_midApprover = #{userId} and d_process = '완료')
+			    OR (d_writer = e_id and d_finalapprover = #{userId} and d_process = '완료')
+		]]>
+	</select>
+	
+	<!-- 반려문서함 목록 불러오기 -->
+   <select id="getReturnList" resultType="com.light.domain.ReturnVO">
+      <![CDATA[
+         select r_id, r_content, r_returndate, r_draft, d_title, r_returner, e_name 'returner_name', r_employee
+         from draft, returned, employee
+         where r_employee = #{userId} and r_draft = d_id and r_returner = e_id
+      ]]>
+   </select>
+	
+	
+	<!-- 부서문서함 목록 불러오기 -->
+	<!-- 기안 작성자가 내 부서 사람이고, 완료된 문서 -->
+	<select id="getDeptDraftList" resultType="com.light.domain.DraftVO">
+		<![CDATA[
+			select d_id, d_title, d_writedate, CONCAT(DATE_FORMAT(d_approvedate,'%Y-%m-%d'),' ',DATE_FORMAT(d_approvedate,'%H:%m:%s')) as d_approvedate, d_process, d_writer, e_name 'writer_name', dept_name
+			from draft, employee, department
+			where dept_id=#{userDeptId} and dept_id=d_dept and d_writer=e_id and d_process='완료'
+		]]>
+	</select>
+		
+	
+	<!-- 진행문서 & 임시보관 & 결재완료 문서 읽기 -->
+	<select id="draftRead" resultType="com.light.domain.DraftVO">
+		select d_id, d_title, d_content, CONCAT(DATE_FORMAT(d_writedate,'%Y-%m-%d'),' ',DATE_FORMAT(d_writedate,'%H:%m:%s')) as d_writedate, 
+		CONCAT(DATE_FORMAT(d_approvedate,'%Y-%m-%d'),' ',DATE_FORMAT(d_approvedate,'%H:%m:%s')) as d_approvedate, 
+		d_process, d_midApprover, d_finalapprover,
+			e_id 'writer_id', e_name 'writer_name', dept_name 'writer_dept', 
+			
+			(select e_id
+			from draft, employee
+			where d_id = #{d_id} and d_midApprover = e_id) 'midApprover_id',
+			
+		    (select e_name
+			from draft, employee
+			where d_id = #{d_id} and d_midApprover = e_id) 'midApprover_name',
+		    
+		    (select dept_name
+			from draft, employee, department
+			where d_id = #{d_id} and d_midApprover = e_id and e_dept = dept_id) 'midApprover_dept',
+		    
+		    (select e_id
+			from draft, employee
+			where d_id = #{d_id} and d_finalapprover = e_id) 'finalApprover_id',
+		    
+		    (select e_name
+			from draft, employee
+			where d_id = #{d_id} and d_finalapprover = e_id) 'finalApprover_name',
+		    
+			(select dept_name 
+			from draft, employee, department
+			where d_id = #{d_id} and d_finalapprover = e_id and e_dept = dept_id) 'finalApprover_dept'
+		
+		from draft, employee, department
+		where d_id = #{d_id} and d_writer = e_id and e_dept = dept_id
+	</select>
+	
+	<!-- 반려기록 읽기 -->
+	<select id="returnDraftRead" resultType="com.light.domain.ReturnVO">
+		select distinct r_id, r_returndate, d_writeDate, d_title, d_content, r_content, d_writedate, 
+			
+			(select e_name
+			from returned, employee
+			where r_id = 2 and r_employee = e_id) 'writer_name',
+			
+			(select dept_name
+			from returned, employee, department
+			where r_id = 2 and r_employee = e_id and e_dept = dept_id) 'writer_dept',
+			
+		    (select e_name
+			from draft, employee, returned
+			where r_id = 2 and r_draft = d_id and d_midApprover = e_id) 'midApprover_name',
+		    
+		    (select dept_name
+			from draft, employee, department, returned
+			where r_id = 2 and r_draft = d_id and d_midApprover = e_id and e_dept = dept_id) 'midApprover_dept',
+		    
+		    (select e_name
+			from draft, employee, returned
+			where r_id = 2 and r_draft = d_id and d_finalapprover = e_id) 'finalApprover_name',
+		    
+			(select dept_name 
+			from draft, employee, department, returned
+			where r_id = 2 and r_draft = d_id and d_finalapprover = e_id and e_dept = dept_id) 'finalApprover_dept'
+		
+		from returned, draft, employee, department
+		where r_id = 2 and r_draft = d_id and r_returner = e_id
+	</select>
+
+	
+	
+	<!-- 기안 작성 창 - 부서목록 불러오기-->
+	<select id="getDeptList" resultType="com.light.domain.DeptVO">
+		<![CDATA[
+			select *
+			from department
+			order by dept_id
+		]]>
+	</select>
+	
+	<!-- 기안 작성 창 - 부서에 해당하는 사람 이름 목록 불러오기 (ajax처리) -->
+	<select id="getNameList" resultType="com.light.domain.EmployeeVO">
+		<![CDATA[
+			select e_id, e_name
+			from department d, employee e
+			where dept_name = #{deptName} and dept_id = e_dept
+			order by e_name
+		]]>
+	</select>
+	
+	
+	
+	<!-- 기안 작성하기 -->
+	<!-- d_dept와 d_writer는 로그인한 본인 정보를 불러와야 함 -->
+	<insert id="insert">
+		insert into draft (d_title, d_content, d_writedate, d_process, d_dept, d_writer, d_midApprover, d_finalapprover) 
+		values (#{d_title}, #{d_content}, now(), '1차진행중', #{d_dept}, #{d_writer}, #{d_midApprover}, #{d_finalApprover})
+	</insert>
+	
+	<!-- 기안 작성하기  - 전결 -->
+	<!-- d_dept와 d_writer는 로그인한 본인 정보를 불러와야 함 -->
+	<insert id="insertJump">
+		insert into draft (d_title, d_content, d_writedate, d_process, d_dept, d_writer, d_midApprover) 
+		values (#{d_title}, #{d_content}, now(), '1차진행중', #{d_dept}, #{d_writer}, #{d_midApprover})
+	</insert>
+	
+	<!-- 진행문서 읽기 창 - 결재자 반려 (인서트) -->
+	<insert id="returnInsert">
+		insert into returned (r_content, r_returndate, r_returner, r_draft, r_employee) 
+		values (#{r_content}, now(), #{r_returner}, #{r_id}, #{r_employee})
+	</insert>
+	
+	
+	
+	<!-- 임시저장하기 -->
+	<!-- d_dept와 d_writer는 로그인한 본인 정보를 불러와야 함 -->
+	<insert id="saveDraft">
+		insert into draft (d_title, d_content, d_process, d_dept, d_writer, d_midApprover, d_finalApprover) 
+		values (#{d_title}, #{d_content}, '작성중', #{d_dept}, #{d_writer}, #{d_midApprover}, #{d_finalApprover})
+	</insert>
+	
+	<!-- 임시저장하기 -->
+	<!-- d_dept와 d_writer는 로그인한 본인 정보를 불러와야 함 -->
+	<insert id="saveJumpDraft">
+		insert into draft (d_title, d_content, d_process, d_dept, d_writer, d_midApprover) 
+		values (#{d_title}, #{d_content}, '작성중', #{d_dept}, #{d_writer}, #{d_midApprover})
+	</insert>
+	
+	
+
+	
+	<!-- 임시보관함 읽기 창 - 기안 작성하기 -->
+	<update id="registReadyDraft">
+		update draft
+		set d_title = #{d_title}, 
+			d_content = #{d_content},
+			d_writedate = now(),
+			d_process = '1차진행중',
+			d_midApprover = #{d_midApprover},
+			d_finalapprover = #{d_finalApprover}
+		where d_id = #{d_id}
+	</update>
+	
+	<!-- 임시보관함 창 - 임시보관 (신정연) -->
+	<update id="saveReadyDraft" >
+		update draft
+		set d_title = #{d_title}, 
+			d_content = #{d_content},
+			d_midapprover = #{d_midApprover},
+			d_finalapprover = #{d_finalApprover}
+		where d_id = #{d_id}
+	</update>
+	
+	<!-- 진행문서 읽기 창 - 중간결재자 승인 -->
+	<update id="updateMidOk">
+		update draft
+		set d_process = '2차진행중'
+		where d_id = #{d_id}
+	</update>
+	
+	<!-- 진행문서 읽기 창 - 최종결재자 승인 -->
+	<update id="updateFinalOk">
+		update draft
+		set d_process = '완료',
+			d_approvedate = now()
+		where d_id = #{d_id}
+	</update>
+	
+	<!-- 진행문서 읽기 창 - 결재자 반려 -->
+	<update id="updateNo">
+		update draft
+		set d_process = '반려'
+		where d_id = #{d_id}
+	</update>
+	
+
+	
+	
+	
+	<!-- 회수 버튼 클릭시 d_process = "회수" 수정 -->
+	<update id = "backDraftGo">
+		update draft
+		set d_process = '회수'
+		where d_id = #{d_id}
+	</update>
+	
+	
+	
+	<!-- 회수 수정 후 다시 재기안 -->
+	<update id = "backDraftUpdate">
+		update draft
+		set d_title = #{d_title}, 
+			d_content = #{d_content},
+			d_writedate = now(),
+			d_process = '1차진행중',
+			d_midApprover = #{d_midApprover},
+			d_finalapprover = #{d_finalApprover}
+		where d_id = #{d_id}
+	</update>
+	
+	
+	
+	<!-- 회수문서 수정 창 - 삭제 처리  -->
+	<update id = "removeDraft">
+		update draft
+		set d_process = '삭제'
+		where d_id = #{d_id}
+	</update>
+	
+
+</mapper>

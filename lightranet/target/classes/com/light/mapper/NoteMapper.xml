@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.light.mapper.NoteMapper">
+
+	<select id="getReceiveList" resultType="com.light.domain.NoteVO">
+	<![CDATA[
+		select n_id, dept_name, employee.e_name, note.n_content, note.n_sendtime, note.n_checked 
+		from note, employee, department
+		where  dept_id = e_dept and e_id = n_sender and n_receiver = #{userId} and n_receiverdelete=0
+		order by n_sendtime desc
+	]]>
+	</select>
+	
+	<select id="getSendList" resultType="com.light.domain.NoteVO">
+		<![CDATA[
+			select n_id, dept_name, employee.e_name, note.n_content, note.n_sendtime, note.n_checked 
+			from note, employee, department
+			where  dept_id = e_dept and e_id = n_receiver and n_sender = #{userId} and n_senderdelete = 0
+			order by n_sendtime desc
+		]]>
+	</select>
+
+	<insert id="send">
+		insert into note(n_content, n_receiver, n_sender)
+		values(#{n_content}, (select e_id from employee where e_id=#{n_receiver}), (select e_id from employee where e_id=#{userId}))
+		<!-- (select e_id from employee where e_name=#{n_sender}) -->
+	</insert>
+	
+	<insert id="newNoteSend">
+		insert into note(n_content, n_receiver, n_sender)
+		values(#{n_content}, (select e_id from employee where e_name=#{e_name}), (select e_id from employee where e_id=#{userId}))
+		<!-- (select e_id from employee where e_name=#{n_sender}) -->
+	</insert>
+	
+	<!-- 부서 목록 불러오기 -->
+	<select id="getReceiverDept" resultType="com.light.domain.DeptVO">
+		<![CDATA[
+			select *
+			from department
+			order by dept_id
+		]]>
+	</select>
+	
+	<!-- 이름 목록 불러오기 -->
+	<select id="getReceiverList" resultType="com.light.domain.EmployeeVO">
+		<![CDATA[
+			select e_id, e_name
+			from department d, employee e
+			where dept_name = #{deptName} and dept_id = e_dept
+			order by e_name
+		]]>
+	</select>
+
+<!-- 새창에서 쪽지내용 읽기 -->
+	<select id="read" resultType="com.light.domain.NoteVO">
+		<![CDATA[
+			select n.n_content, e.e_name, d.dept_name, n.n_id
+			from note n, employee e, department d 
+			where n.n_id = #{n_id} and n_sender = e_id and e_dept = dept_id
+		]]>
+	</select>
+
+	<update id="check">
+		update note
+		set n_checked = 1
+		where n_id = #{n_id}
+	</update>
+
+
+	<update id="receiverDelete">
+		update note
+		set n_receiverdelete = 1
+		where n_id = #{n_id} and 
+	</update>
+	
+	<update id="senderDelete">
+		update note
+		set n_senderdelete = 1
+		where n_id = #{n_id}
+	</update>
+
+</mapper>

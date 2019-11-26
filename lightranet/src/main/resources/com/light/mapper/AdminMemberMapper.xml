@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.light.mapper.AdminMemberMapper">
+
+
+	<select id="getAdminMemberList" resultType="com.light.domain.AdminMemberVO">	
+	<![CDATA[
+		select * 
+		from employee, department 
+		WHERE department.dept_id = employee.e_dept
+		order by e_id asc
+	]]>
+	
+	</select>
+	
+	<select id = "getDeptList" resultType = "com.light.domain.DepartmentVO">
+		select dept_id, dept_name
+		from lightranet.department
+		order by dept_id
+	</select>
+	
+	
+	<select id = "getMemDept" resultType = "com.light.domain.DepartmentVO">
+		select dept_name
+		from 
+		where #{e_name} = ?
+	</select>
+	
+	
+	<!-- (e_name, e_email, e_phone, e_position, e_loginid, e_loginpw, e_stamp, e_dept]) -->
+	
+ 	<insert id="adminMemberInsert">
+		insert into employee (e_name, e_email, e_phone, e_position, e_loginid, e_loginpw, e_stamp, e_dept)
+		values (#{e_name}, #{e_email}, #{e_phone}, #{e_position}, #{e_loginid}, #{e_loginpw}, null, #{dept_id})
+			<!-- e_stamp >>> null 값에서 값 주어지는 걸로 바꿈.  -->
+	</insert>
+
+
+	<insert id="adminMemberinsertSelectKey" >
+
+		insert into lightranet.employee (e_id, e_name, e_email, e_phone, e_position, e_loginid, e_loginpw, e_stamp, e_dept)
+			values (#{e_id}, #{e_name}, #{e_email}, #{e_phone}, #{e_position}, #{e_loginid}, #{e_loginpw}, #{e_stamp},  #{e_dept})
+
+		<selectKey resultType="long" keyProperty="e_id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		
+	</insert>
+
+
+	<select id="adminMemberRead" resultType="com.light.domain.AdminMemberVO">
+		select e_id, e_name, e_email, e_phone, e_position, e_loginid, e_loginpw, e_stamp, dept_id, dept_name
+		from employee, department 
+		where e_id = #{e_id} and e_dept = dept_id
+	</select>
+	
+	
+	<delete id="adminMemberDelete">
+		delete from lightranet.employee where e_id = #{e_id}
+	</delete>
+	
+	
+	<update id="adminMemberUpdate">
+		update lightranet.employee set 
+			e_name = #{e_name}, e_email=#{e_email}, e_phone=#{e_phone}, e_position=#{e_position}, e_loginid=#{e_loginid},
+			e_loginpw=#{e_loginpw},  e_stamp=#{e_stamp}, e_dept=#{dept_id} 
+		where e_id = #{e_id}
+	</update>
+	
+	
+</mapper>
